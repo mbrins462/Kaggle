@@ -83,7 +83,6 @@ test_df['GenderFamilySize'] = (test_df.Gender + 1) * (test_df.FamilySize + 1)
 test_df.loc[ (test_df.Fare.isnull()), 'Fare'] = 13.307149
 
 # We are left with columns for 'Pclass', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Gender', 'AgeFill', 'GenderClass', 'FamilySize', 'GenderFamilySize'
-# these columns are ordered the same for both the training and test data
 
 # begin the random forest
 
