@@ -58,11 +58,10 @@ for ii in range(2):
 train_df = train_df.drop(['Age'], axis=1)
 test_df = test_df.drop(['Age'], axis=1)
 
-# It could be that one's gender and class are entangled in their survival effects so we will
-# add new column 'GenderClass' which takes the product of passneger gender value (plus one) and class
+# It could be that one's gender and class couple together in their effects so we will
+# add new column 'GenderClass' which takes the product of passenger gender value (plus one) and class
 # examples: a first class female would have GenderClass = (0 + 1) * 1 = 1
 #           a second class male would have GenderClass = (1 + 1) * 2 = 4
-# the reason it is gender plus one is so that female values don't all turn out to be zero
 train_df['GenderClass'] = (train_df.Gender + 1) * train_df.Pclass
 test_df['GenderClass'] = (test_df.Gender + 1) * test_df.Pclass
 
@@ -70,14 +69,10 @@ test_df['GenderClass'] = (test_df.Gender + 1) * test_df.Pclass
 train_df['FamilySize'] = train_df.SibSp + train_df.Parch
 test_df['FamilySize'] = test_df.SibSp + test_df.Parch
 
-# There could be a correlation between Survival, and gender and family size as well, for example
-# since it was women and children first on the lifeboats, a male with a large family
-# would be responsible for making sure that all of the women and children in his family
-# have a spot on a lifeboat thus lowering his chances of getting on a lifeboat, or, a 
-# woman with no family would be able to go straight to a lifeboat without having to
-# gather her children etc. (again it will be gender + 1 as was in GenderClass)
-# We will also have FamilySize + 1 so that men and women that are by themselves can 
-# still be distinguished
+# One's gender may also couple to family size when determining survival as well just as
+# gender and class (again it will be gender + 1 as was in GenderClass
+# we also take family size + 1 in order to distinguish men and women that are alone)
+
 train_df['GenderFamilySize'] = (train_df.Gender + 1) * (train_df.FamilySize + 1)
 test_df['GenderFamilySize'] = (test_df.Gender + 1) * (test_df.FamilySize + 1)
 
@@ -106,5 +101,5 @@ output = forest.predict(test_data)
 
 PassengerIds = np.arange(892, 1310)
 S = Series(output, index=PassengerIds, dtype=int)
-S.to_csv('./new_results.csv', header=True, index_label=['PassengerId','Survived'])
+S.to_csv('./results.csv', header=True, index_label=['PassengerId','Survived'])
 
