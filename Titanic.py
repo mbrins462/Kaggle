@@ -90,9 +90,6 @@ test_df.loc[ (test_df.Fare.isnull()), 'Fare'] = 13.307149
 # We are left with columns for 'Pclass', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Gender', 'AgeFill', 'GenderClass', 'FamilySize', 'GenderFamilySize'
 # these columns are ordered the same for both the training and test data
 
-print train_df
-print test_df
-
 # begin the random forest
 
 train_data = train_df.values
