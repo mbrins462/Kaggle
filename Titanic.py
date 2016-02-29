@@ -70,7 +70,7 @@ test_df['GenderClass'] = (test_df.Gender + 1) * test_df.Pclass
 train_df['FamilySize'] = train_df.SibSp + train_df.Parch
 test_df['FamilySize'] = test_df.SibSp + test_df.Parch
 
-# There could be a correlation between gender and family size as well, for example
+# There could be a correlation between Survival, and gender and family size as well, for example
 # since it was women and children first on the lifeboats, a male with a large family
 # would be responsible for making sure that all of the women and children in his family
 # have a spot on a lifeboat thus lowering his chances of getting on a lifeboat, or, a 
