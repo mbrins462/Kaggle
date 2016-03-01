@@ -95,5 +95,5 @@ output = forest.predict(test_data)
 
 PassengerIds = np.arange(892, 1310)
 S = Series(output, index=PassengerIds, dtype=int)
-S.to_csv('results.csv', header=True, index_label=['PassengerId','Survived'])
+S.to_csv('titanic_results.csv', header=True, index_label=['PassengerId','Survived'])
 
