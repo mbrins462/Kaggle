@@ -5,8 +5,8 @@ from pandas import Series, DataFrame
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
-train_file = pd.read_csv('~/Computing/Kaggle/Titanic/train.csv')
-test_file = pd.read_csv('~/Computing/Kaggle/Titanic/test.csv')
+train_file = pd.read_csv('train.csv')
+test_file = pd.read_csv('test.csv')
 
 train_df = DataFrame(train_file)
 test_df = DataFrame(test_file)
@@ -84,15 +84,10 @@ test_df.loc[ (test_df.Fare.isnull()), 'Fare'] = 13.307149
 
 # We are left with columns for 'Pclass', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Gender', 'AgeFill', 'GenderClass', 'FamilySize', 'GenderFamilySize'
 
-# begin the random forest
-
 train_data = train_df.values
 test_data = test_df.values
 
-check_file = pd.read_csv('~/Computing/Kaggle/Titanic/genderclassmodel.csv')
-check_df = DataFrame(check_file)
-check_df = check_df.drop(['PassengerId'], axis=1)
-check_data = check_df.values
+# begin the random forest
 
 forest = RandomForestClassifier(n_estimators = 100)
 forest = forest.fit(train_data[0::,1::], train_data[0::, 0])
@@ -100,5 +95,5 @@ output = forest.predict(test_data)
 
 PassengerIds = np.arange(892, 1310)
 S = Series(output, index=PassengerIds, dtype=int)
-S.to_csv('./results.csv', header=True, index_label=['PassengerId','Survived'])
+S.to_csv('results.csv', header=True, index_label=['PassengerId','Survived'])
 
