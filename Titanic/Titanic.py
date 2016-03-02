@@ -1,5 +1,11 @@
 #! /usr/bin/env python
 
+#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+# this is an adaptation of the
+# tutorial provided for the 
+# Titanic challenge
+#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 import pandas as pd
 from pandas import Series, DataFrame
 import numpy as np
